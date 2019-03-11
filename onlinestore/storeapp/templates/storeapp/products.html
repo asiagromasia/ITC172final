@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--This is a comment-->
+<h2>Products</h2>
+<table class='table'>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    {% for item in products_list %}
+        <tr>
+            <td><a href="{% url 'productdetails' id=item.id %}">{{ item.productname }}</a></td>
+            <td>{{ item.productprice }}</td>
+        </tr>
+        
+    {% endfor %}
+    
+</table>
+
+{% endblock %}

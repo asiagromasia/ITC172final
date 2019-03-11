@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ detail.productname }}</h2>
+<p>{{ detail.productprice }}</p>
+<p>{{ detail.productdescription }}</p>
+<br>
+<p><a href="{% url 'getreviews' id=detail.id %}">Reviews</a></p>
+{% endblock %}

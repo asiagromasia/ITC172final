@@ -28,10 +28,10 @@ class Orders(models.Model):
     orderplacedate = models.DateField()
     orderdeliverydate = models.DateField()
     orderproduct = models.ForeignKey(Products, on_delete = models.DO_NOTHING)
-    orderaddress = models.CharField(max_length = 255)
+    orderaddress = models.TextField()
     orderinstructions = models.TextField()
     def __str__(self):
-        return self.id
+        return str(self.id)
     class Meta:
         db_table = 'orders'
 
@@ -40,9 +40,9 @@ class Reviews(models.Model):
     reviewcomment = models.TextField()
     reviewrating = models.SmallIntegerField()
     reviewdate = models.DateField()
-    reviewreply = models.TextField()
+    reviewreply = models.TextField(blank=True)
     revieworder = models.ForeignKey(Orders, on_delete = models.DO_NOTHING)
     def __str__(self):
-        return self.id
+        return str(self.id)
     class Meta:
         db_table = 'reviews'

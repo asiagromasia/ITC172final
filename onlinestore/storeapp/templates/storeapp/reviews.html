@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--This is a comment-->
+<h2>Reviews</h2>
+<table class='table'>
+    <tr>
+        <th>Product</th>
+        <th>Rating</th>
+        <th>Date</th>
+    </tr>
+    {% for item in reviews_list %}
+        <tr>
+            <td><a href="{% url 'reviewdetails' id=item.id %}">{{ item.reviewproduct }}</a></td>
+            <td><a href="{% url 'reviewdetails' id=item.id %}">{{ item.reviewrating }}</a></td>
+            <td><a href="{% url 'reviewdetails' id=item.id %}">{{ item.reviewdate }}</a></td>
+        </tr>
+        
+    {% endfor %}
+    
+</table>
+{% endblock %}
