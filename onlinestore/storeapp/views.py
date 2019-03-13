@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductTypes, Products, Orders, Reviews
 from .forms import ProductsForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index (request):
@@ -26,6 +27,7 @@ def getproducttypes (request):
     types_list=ProductTypes.objects.all()
     return render(request, 'storeapp/producttypes.html', {'types_list' : types_list})
 
+@login_required
 def neworder(request):
     form=ProductsForm
     if request.method=='POST':
@@ -38,3 +40,9 @@ def neworder(request):
     else:
         form=ProductsForm()
     return render(request, 'storeapp/neworder.html', {'form': form})   
+
+def loginmessage(request):
+    return render(request, 'storeapp/loginmessage.html')
+
+def logoutmessage(request):
+    return render(request, 'storeapp/logoutmessage.html')    

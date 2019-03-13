@@ -10,4 +10,6 @@ urlpatterns=[
     path('productdetails/<int:id>', views.productdetails, name='productdetails'),
     path('reviewdetails/<int:id>', views.reviewdetails, name='reviewdetails'),
     path('getproducttypes/', views.getproducttypes, name='getproducttypes'),
+    path('loginmessage/', views.loginmessage, name='loginmessage'),
+    path('logoutmessage/', views.logoutmessage, name='logoutmessage'),
 ]
