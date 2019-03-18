@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductTypes, Products, Orders, Reviews
-from .forms import ProductsForm
+from .forms import OrdersForm, ProductForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -29,17 +29,31 @@ def getproducttypes (request):
 
 @login_required
 def neworder(request):
-    form=ProductsForm
+    form=OrdersForm
     if request.method=='POST':
-        form=ProductsForm(request.POST)
+        form=OrdersForm(request.POST)
         if form.is_valid():
             post=form.save(commit=True)
             post.save()
-            form=ProductsForm()
+            form=OrdersForm()
             # you could re-direct here once form is submitted instead off  generating new form
     else:
-        form=ProductsForm()
+        form=OrdersForm()
     return render(request, 'storeapp/neworder.html', {'form': form})   
+
+@login_required
+def newproduct(request):
+    form=ProductForm
+    if request.method=='POST':
+        form=ProductForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=ProductForm()
+            # you could re-direct here once form is submitted instead off  generating new form
+    else:
+        form=ProductForm()
+    return render(request, 'storeapp/newproduct.html', {'form': form})  
 
 def loginmessage(request):
     return render(request, 'storeapp/loginmessage.html')
